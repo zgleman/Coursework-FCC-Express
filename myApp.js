@@ -7,7 +7,7 @@ var app = express();
 
 // --> 7)  Mount the Logger middleware here
 app.use(function(req, res, next){
-  console.log(req.method req.path - req.ip);
+  console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 })
 
@@ -47,7 +47,14 @@ process.env.MESSAGE_STYLE = 'uppercase';
 
 
 /** 8) Chaining middleware. A Time server */
-
+app.get("/now", function(req, res, next){
+  req.time = new Date().toString();
+  next();
+}
+function(req, res){
+  res.json({"time": req.time});
+}
+)
 
 /** 9)  Get input from client - Route parameters */
 
