@@ -1,9 +1,11 @@
 console.log("Hello World")
 var express = require('express');
 var app = express();
-app.get("Hello World", function(req, res){
-  
+app.get("/", function(req, res){
+  var absolutePath = __dirname + "/views/index.html";
+  res.sendFile(absolutePath);
 } )
+app.use(express.static(__dirname + "/public"));
 // --> 7)  Mount the Logger middleware here
 
 
