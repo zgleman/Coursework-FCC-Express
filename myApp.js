@@ -4,8 +4,13 @@ var app = express();
 app.get("/", function(req, res){
   var absolutePath = __dirname + "/views/index.html";
   res.sendFile(absolutePath);
-} )
+} );
 app.use(express.static(__dirname + "/public"));
+app.get("/json", function(req, res){
+  res.json({"message": "Hello json"})
+});
+process.env.MESSAGE_STYLE=uppercase;
+
 // --> 7)  Mount the Logger middleware here
 
 
